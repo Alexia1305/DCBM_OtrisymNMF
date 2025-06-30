@@ -106,19 +106,6 @@ def main(list_mu):
             print(NMI)
             print(end_time - start_time)
 
-            # OtrisymNMF
-            X = nx.adjacency_matrix(G, nodelist=G.nodes)
-            start_time = time.time()
-            w_best, v_best, S_best, error_best = OtrisymNMF.OtrisymNMF_CD_Sparse(X, r, numTrials=10, init_method="SVCA",
-                                                                          verbosity=0, init_seed=idx, delta=1e-5)
-            end_time = time.time()
-            NMI = normalized_mutual_info_score(labels, v_best)
-            results["OtrisymNMF"]["NMI"].append(NMI)
-            results["OtrisymNMF"]["Time"].append(end_time - start_time)
-            print(NMI)
-            print(end_time - start_time)
-
-            break;
 
 
             #SVCA only
@@ -171,7 +158,7 @@ def main(list_mu):
                 "Erreur type Temps": np.round(np.std(data["Time"], ddof=1), 2)
             }
 
-        break
+
         df_results = pd.DataFrame.from_dict(summary, orient="index")
         print(f"\nRésultats pour mu={mu:.1f}:")
         # Results Display
@@ -186,7 +173,7 @@ def main(list_mu):
 if __name__ == "__main__":
 
     #Options TEST
-    list_mu = np.arange(0.5, 0.7, 0.1)  # mu between 0 and 0.6
+    list_mu = np.arange(0.3, 0.7, 0.1)  # mu between 0 and 0.6
 
     random.seed(42)  # Fixer la seed
     main(list_mu)
