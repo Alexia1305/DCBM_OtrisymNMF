@@ -325,7 +325,6 @@ def cardan(a, b, c, d):
     p = -(b ** 2 / (3 * a ** 2)) + c / a
     q = ((2 * b ** 3) / (27 * a ** 3)) - ((9 * c * b) / (27 * a ** 2)) + (d / a)
     delta = -(4 * p ** 3 + 27 * q ** 2)
-
     if delta < 0:
         u = (-q + math.sqrt(-delta / 27)) / 2
         v = (-q - math.sqrt(-delta / 27)) / 2
@@ -360,7 +359,7 @@ def cardan(a, b, c, d):
 
     else:
         epsilon = -1e-300
-        phi = math.acos(-q / (2 * math.sqrt(-27 / (p ** 3 + epsilon))))
+        phi = math.acos(-(q / 2) * math.sqrt(-27 / (p ** 3 + epsilon)))
         z1 = 2 * math.sqrt(-p / 3) * math.cos(phi / 3)
         z2 = 2 * math.sqrt(-p / 3) * math.cos((phi + 2 * math.pi) / 3)
         z3 = 2 * math.sqrt(-p / 3) * math.cos((phi + 4 * math.pi) / 3)
